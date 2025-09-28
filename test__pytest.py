@@ -37,7 +37,7 @@ def test_tp2():
     texte_titre = driver.find_element(By.XPATH, "//h1")
     texte_explicatif = driver.find_element(By.XPATH, "//h1/../p")
     assert "Plans and Prices" == texte_titre.text
-    assert "Flexible pricing" in texte_explicatif.text #solution du feignant
+    assert "Flexible pricing" in texte_explicatif.text
     assert texte_explicatif.is_displayed()
     assert texte_explicatif.location['y'] > texte_titre.location['y']
 
@@ -55,3 +55,11 @@ def test_tp3():
     windows = driver.window_handles
     driver.switch_to.window(windows[-1])
     assert 'https://app.phptravels.com/signup' == driver.current_url
+
+def test_tp4():
+    driver = webdriver.Chrome()
+    driver.get('https://phptravels.com/')
+    menu_talk_to_sales = driver.find_element(By.XPATH, "/html/body/header/div[1]/div/div[2]/a[1]")
+    menu_talk_to_sales.click()
+    time.sleep(5)
+    assert 'PHPTRAVELS Best Open Source PHP Booking Software' == driver.title
